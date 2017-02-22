@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80a2c790198a42f88ea1604955bd0d46" Name="Diagram1" ZoomLevel="99">
+        <EntityTypeShape EntityType="ResumeEditorModel.MasterExperienceType" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.MasterGender" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.MasterMaritalStatu" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.MasterSkillLevel" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.MasterSkillType" Width="1.5" PointX="6" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.MasterTemplate" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionExperienceAchievement" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionExperienceAchievementItem" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionExperienceTimeline" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionJobDescription" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionOwnerHobbyAndLiftStyle" Width="1.5" PointX="5.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionOwnerOverView" Width="1.5" PointX="5.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionOwnerProfile" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionOwnerSkill" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionResumeDocument" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionResumeHobbyAndLiftStyle" Width="1.5" PointX="7.5" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.TransactionResumeOverView" Width="1.5" PointX="7.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResumeEditorModel.vwExperienceAchievement" Width="1.5" PointX="10.875" PointY="0.625" IsExpanded="true" FillColor="Red" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionExperienceTimeline_MasterExperienceType" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionOwnerProfile_MasterGender" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionOwnerProfile_MasterMaritalStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionOwnerSkill_MasterSkillLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionOwnerSkill_MasterSkillType" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionResumeDocument_MasterTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionAchievement_TransactionExperienceTimeline" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionExperienceTimeline_TransactionOwnerProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionJobDescription_TransactionExperienceTimeline" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionOwnerOverView_TransactionOwnerProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionResumeOverView_TransactionOwnerOverView" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionOwnerSkill_TransactionOwnerProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionResumeDocument_TransactionOwnerProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="ResumeEditorModel.FK_TransactionResumeOverView_TransactionResumeDocument" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
