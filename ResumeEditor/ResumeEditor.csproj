@@ -15,7 +15,7 @@
     <AssemblyName>ResumeEditor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -29,6 +29,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="DefaultConnection-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=.%3bInitial Catalog=ResumeEditor%3bPersist Security Info=True%3bUser ID=sa%3bPassword=Local%40ntl" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\DefaultConnection-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,6 +62,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -163,6 +176,75 @@
     <Compile Include="Controllers\ExperienceTimelineController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="EF\MasterExperienceType.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MasterGender.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MasterMaritalStatu.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MasterSkillLevel.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MasterSkillType.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MasterTemplate.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ResumeEditorDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResumeEditorDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ResumeEditorDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ResumeEditorDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResumeEditorDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionExperienceAchievement.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionExperienceAchievementItem.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionExperienceTimeline.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionJobDescription.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionOwnerHobbyAndLiftStyle.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionOwnerOverView.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionOwnerProfile.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionOwnerSkill.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionResumeDocument.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionResumeHobbyAndLiftStyle.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\TransactionResumeOverView.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\vwExperienceAchievement.cs">
+      <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -177,6 +259,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="EF\ResumeEditorDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ResumeEditorDataModel.edmx</DependentUpon>
+      <LastGenOutput>ResumeEditorDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\ResumeEditorDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ResumeEditorDataModel.edmx</DependentUpon>
+      <LastGenOutput>ResumeEditorDataModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -189,6 +281,13 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <EntityDeploy Include="EF\ResumeEditorDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ResumeEditorDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EF\ResumeEditorDataModel.edmx.diagram">
+      <DependentUpon>ResumeEditorDataModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -243,14 +342,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ExperienceTimeline\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ExperienceTimeline\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -270,7 +372,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55506</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55506/</IISUrl>
+          <IISUrl>http://rsmedt</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

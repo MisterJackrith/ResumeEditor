@@ -1,0 +1,1428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ResumeEditorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MasterExperienceType">
+          <Key>
+            <PropertyRef Name="ExperienceType" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExperienceType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExperienceTypeTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MasterGender">
+          <Key>
+            <PropertyRef Name="Gender" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterMaritalStatus">
+          <Key>
+            <PropertyRef Name="MaritalStatusId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaritalStatusId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaritalStatusTitle" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MasterSkillLevel">
+          <Key>
+            <PropertyRef Name="SkillLevelId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillLevelId" Type="int" Nullable="false" />
+          <Property Name="SkillLevelTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillLevelScore" Type="float" />
+        </EntityType>
+        <EntityType Name="MasterSkillType">
+          <Key>
+            <PropertyRef Name="SkillTypeId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillTypeId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SkillTypeTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillTypeDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MasterTemplate">
+          <Key>
+            <PropertyRef Name="TemplateId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TemplateTitile" Type="nvarchar" MaxLength="50" />
+          <Property Name="TemplateDescription" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TransactionExperienceAchievement">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="AchievementId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExperienceId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AchievementId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AchievementTitle" Type="nvarchar(max)" />
+          <Property Name="AchievementDescription" Type="nvarchar(max)" />
+          <Property Name="AchievementSequence" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="TransactionExperienceAchievementItem">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="AchievementId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExperienceId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AchievementId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="TagSkills" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TransactionExperienceTimeline">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExperienceId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExperienceType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CompanyTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="PositionTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="CompanyAddress" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TransactionJobDescription">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExperienceId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemTitle" Type="nvarchar(max)" />
+          <Property Name="ItemDescription" Type="nvarchar(max)" />
+          <Property Name="ItemSequence" Type="int" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerHobbyAndLiftStyle">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="HobbyId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HobbyId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerOverView">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="OverViewItemId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OverViewItemId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerProfile">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="Address2" Type="nvarchar(max)" />
+          <Property Name="Address3" Type="nvarchar(max)" />
+          <Property Name="Address4" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="500" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelephoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaritalStatusId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Religion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Height" Type="float" />
+          <Property Name="HeightUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="WeightUnit" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerSkill">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SkillId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SkillTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillLevelId" Type="int" />
+          <Property Name="SkillType" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillSinceYear" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TransactionResumeDocument">
+          <Key>
+            <PropertyRef Name="ResumeDocumentId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResumeDocumentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="LastUpdatedOn" Type="datetime" />
+          <Property Name="ApplyingFor" Type="nvarchar" MaxLength="50" />
+          <Property Name="TemplateId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reference1" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TransactionResumeHobbyAndLiftStyle">
+          <Key>
+            <PropertyRef Name="ResumeDocumentId" />
+            <PropertyRef Name="HobbyId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResumeDocumentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HobbyId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionResumeOverView">
+          <Key>
+            <PropertyRef Name="ResumeDocumentId" />
+            <PropertyRef Name="OverViewItemId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResumeDocumentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OverViewItemId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ResumeEditor.dbo.vwExperienceAchievement' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwExperienceAchievement">
+          <Key>
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="AchievementId" />
+          </Key>
+          <Property Name="ExperienceId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AchievementId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Project No." Type="nvarchar" MaxLength="2" />
+          <Property Name="Project Title" Type="nvarchar(max)" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Row" Type="bigint" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="TagSkills" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_TransactionAchievement_TransactionExperienceTimeline">
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="1" />
+          <End Role="TransactionExperienceAchievement" Type="Self.TransactionExperienceAchievement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionExperienceTimeline">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="TransactionExperienceAchievement">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement">
+          <End Role="TransactionExperienceAchievement" Type="Self.TransactionExperienceAchievement" Multiplicity="1" />
+          <End Role="TransactionExperienceAchievementItem" Type="Self.TransactionExperienceAchievementItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionExperienceAchievement">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+              <PropertyRef Name="AchievementId" />
+            </Principal>
+            <Dependent Role="TransactionExperienceAchievementItem">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+              <PropertyRef Name="AchievementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionExperienceTimeline_MasterExperienceType">
+          <End Role="MasterExperienceType" Type="Self.MasterExperienceType" Multiplicity="1" />
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterExperienceType">
+              <PropertyRef Name="ExperienceType" />
+            </Principal>
+            <Dependent Role="TransactionExperienceTimeline">
+              <PropertyRef Name="ExperienceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionExperienceTimeline_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionExperienceTimeline">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionJobDescription_TransactionExperienceTimeline">
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="1" />
+          <End Role="TransactionJobDescription" Type="Self.TransactionJobDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionExperienceTimeline">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="TransactionJobDescription">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionOwnerHobbyAndLiftStyle" Type="Self.TransactionOwnerHobbyAndLiftStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerHobbyAndLiftStyle">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerOverView_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionOwnerOverView" Type="Self.TransactionOwnerOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerOverView">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerProfile_MasterGender">
+          <End Role="MasterGender" Type="Self.MasterGender" Multiplicity="0..1" />
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterGender">
+              <PropertyRef Name="Gender" />
+            </Principal>
+            <Dependent Role="TransactionOwnerProfile">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerProfile_MasterMaritalStatus">
+          <End Role="MasterMaritalStatus" Type="Self.MasterMaritalStatus" Multiplicity="0..1" />
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterMaritalStatus">
+              <PropertyRef Name="MaritalStatusId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerProfile">
+              <PropertyRef Name="MaritalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerSkill_MasterSkillLevel">
+          <End Role="MasterSkillLevel" Type="Self.MasterSkillLevel" Multiplicity="0..1" />
+          <End Role="TransactionOwnerSkill" Type="Self.TransactionOwnerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterSkillLevel">
+              <PropertyRef Name="SkillLevelId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerSkill">
+              <PropertyRef Name="SkillLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerSkill_MasterSkillType">
+          <End Role="MasterSkillType" Type="Self.MasterSkillType" Multiplicity="0..1" />
+          <End Role="TransactionOwnerSkill" Type="Self.TransactionOwnerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterSkillType">
+              <PropertyRef Name="SkillTypeId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerSkill">
+              <PropertyRef Name="SkillType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerSkill_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionOwnerSkill" Type="Self.TransactionOwnerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerSkill">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeDocument_MasterTemplate">
+          <End Role="MasterTemplate" Type="Self.MasterTemplate" Multiplicity="1" />
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTemplate">
+              <PropertyRef Name="TemplateId" />
+            </Principal>
+            <Dependent Role="TransactionResumeDocument">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeDocument_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionResumeDocument">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle">
+          <End Role="TransactionOwnerHobbyAndLiftStyle" Type="Self.TransactionOwnerHobbyAndLiftStyle" Multiplicity="1" />
+          <End Role="TransactionResumeHobbyAndLiftStyle" Type="Self.TransactionResumeHobbyAndLiftStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerHobbyAndLiftStyle">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="HobbyId" />
+            </Principal>
+            <Dependent Role="TransactionResumeHobbyAndLiftStyle">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="HobbyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument">
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="1" />
+          <End Role="TransactionResumeHobbyAndLiftStyle" Type="Self.TransactionResumeHobbyAndLiftStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionResumeDocument">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionResumeHobbyAndLiftStyle">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeOverView_TransactionOwnerOverView">
+          <End Role="TransactionOwnerOverView" Type="Self.TransactionOwnerOverView" Multiplicity="1" />
+          <End Role="TransactionResumeOverView" Type="Self.TransactionResumeOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerOverView">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="OverViewItemId" />
+            </Principal>
+            <Dependent Role="TransactionResumeOverView">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="OverViewItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeOverView_TransactionResumeDocument">
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="1" />
+          <End Role="TransactionResumeOverView" Type="Self.TransactionResumeOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionResumeDocument">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionResumeOverView">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ResumeEditorModelStoreContainer">
+          <EntitySet Name="MasterExperienceType" EntityType="Self.MasterExperienceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterGender" EntityType="Self.MasterGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterMaritalStatus" EntityType="Self.MasterMaritalStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterSkillLevel" EntityType="Self.MasterSkillLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterSkillType" EntityType="Self.MasterSkillType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterTemplate" EntityType="Self.MasterTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionExperienceAchievement" EntityType="Self.TransactionExperienceAchievement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionExperienceAchievementItem" EntityType="Self.TransactionExperienceAchievementItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionExperienceTimeline" EntityType="Self.TransactionExperienceTimeline" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionJobDescription" EntityType="Self.TransactionJobDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionOwnerHobbyAndLiftStyle" EntityType="Self.TransactionOwnerHobbyAndLiftStyle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionOwnerOverView" EntityType="Self.TransactionOwnerOverView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionOwnerProfile" EntityType="Self.TransactionOwnerProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionOwnerSkill" EntityType="Self.TransactionOwnerSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionResumeDocument" EntityType="Self.TransactionResumeDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionResumeHobbyAndLiftStyle" EntityType="Self.TransactionResumeHobbyAndLiftStyle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionResumeOverView" EntityType="Self.TransactionResumeOverView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwExperienceAchievement" EntityType="Self.vwExperienceAchievement" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwExperienceAchievement].[ExperienceId] AS [ExperienceId], 
+    [vwExperienceAchievement].[AchievementId] AS [AchievementId], 
+    [vwExperienceAchievement].[Year] AS [Year], 
+    [vwExperienceAchievement].[Project No.] AS [Project No.], 
+    [vwExperienceAchievement].[Project Title] AS [Project Title], 
+    [vwExperienceAchievement].[ItemId] AS [ItemId], 
+    [vwExperienceAchievement].[Row] AS [Row], 
+    [vwExperienceAchievement].[Description] AS [Description], 
+    [vwExperienceAchievement].[TagSkills] AS [TagSkills]
+    FROM [dbo].[vwExperienceAchievement] AS [vwExperienceAchievement]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_TransactionAchievement_TransactionExperienceTimeline" Association="Self.FK_TransactionAchievement_TransactionExperienceTimeline">
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimeline" />
+            <End Role="TransactionExperienceAchievement" EntitySet="TransactionExperienceAchievement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement" Association="Self.FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement">
+            <End Role="TransactionExperienceAchievement" EntitySet="TransactionExperienceAchievement" />
+            <End Role="TransactionExperienceAchievementItem" EntitySet="TransactionExperienceAchievementItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionExperienceTimeline_MasterExperienceType" Association="Self.FK_TransactionExperienceTimeline_MasterExperienceType">
+            <End Role="MasterExperienceType" EntitySet="MasterExperienceType" />
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimeline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionExperienceTimeline_TransactionOwnerProfile" Association="Self.FK_TransactionExperienceTimeline_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfile" />
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimeline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionJobDescription_TransactionExperienceTimeline" Association="Self.FK_TransactionJobDescription_TransactionExperienceTimeline">
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimeline" />
+            <End Role="TransactionJobDescription" EntitySet="TransactionJobDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile" Association="Self.FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfile" />
+            <End Role="TransactionOwnerHobbyAndLiftStyle" EntitySet="TransactionOwnerHobbyAndLiftStyle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerOverView_TransactionOwnerProfile" Association="Self.FK_TransactionOwnerOverView_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfile" />
+            <End Role="TransactionOwnerOverView" EntitySet="TransactionOwnerOverView" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerProfile_MasterGender" Association="Self.FK_TransactionOwnerProfile_MasterGender">
+            <End Role="MasterGender" EntitySet="MasterGender" />
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerProfile_MasterMaritalStatus" Association="Self.FK_TransactionOwnerProfile_MasterMaritalStatus">
+            <End Role="MasterMaritalStatus" EntitySet="MasterMaritalStatus" />
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerSkill_MasterSkillLevel" Association="Self.FK_TransactionOwnerSkill_MasterSkillLevel">
+            <End Role="MasterSkillLevel" EntitySet="MasterSkillLevel" />
+            <End Role="TransactionOwnerSkill" EntitySet="TransactionOwnerSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerSkill_MasterSkillType" Association="Self.FK_TransactionOwnerSkill_MasterSkillType">
+            <End Role="MasterSkillType" EntitySet="MasterSkillType" />
+            <End Role="TransactionOwnerSkill" EntitySet="TransactionOwnerSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerSkill_TransactionOwnerProfile" Association="Self.FK_TransactionOwnerSkill_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfile" />
+            <End Role="TransactionOwnerSkill" EntitySet="TransactionOwnerSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeDocument_MasterTemplate" Association="Self.FK_TransactionResumeDocument_MasterTemplate">
+            <End Role="MasterTemplate" EntitySet="MasterTemplate" />
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeDocument_TransactionOwnerProfile" Association="Self.FK_TransactionResumeDocument_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfile" />
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle" Association="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle">
+            <End Role="TransactionOwnerHobbyAndLiftStyle" EntitySet="TransactionOwnerHobbyAndLiftStyle" />
+            <End Role="TransactionResumeHobbyAndLiftStyle" EntitySet="TransactionResumeHobbyAndLiftStyle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument" Association="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument">
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocument" />
+            <End Role="TransactionResumeHobbyAndLiftStyle" EntitySet="TransactionResumeHobbyAndLiftStyle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeOverView_TransactionOwnerOverView" Association="Self.FK_TransactionResumeOverView_TransactionOwnerOverView">
+            <End Role="TransactionOwnerOverView" EntitySet="TransactionOwnerOverView" />
+            <End Role="TransactionResumeOverView" EntitySet="TransactionResumeOverView" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeOverView_TransactionResumeDocument" Association="Self.FK_TransactionResumeOverView_TransactionResumeDocument">
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocument" />
+            <End Role="TransactionResumeOverView" EntitySet="TransactionResumeOverView" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ResumeEditorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MasterExperienceType">
+          <Key>
+            <PropertyRef Name="ExperienceType" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExperienceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceTypeTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionExperienceTimelines" Relationship="Self.FK_TransactionExperienceTimeline_MasterExperienceType" FromRole="MasterExperienceType" ToRole="TransactionExperienceTimeline" />
+        </EntityType>
+        <EntityType Name="MasterGender">
+          <Key>
+            <PropertyRef Name="Gender" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TransactionOwnerProfiles" Relationship="Self.FK_TransactionOwnerProfile_MasterGender" FromRole="MasterGender" ToRole="TransactionOwnerProfile" />
+        </EntityType>
+        <EntityType Name="MasterMaritalStatu">
+          <Key>
+            <PropertyRef Name="MaritalStatusId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaritalStatusId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaritalStatusTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionOwnerProfiles" Relationship="Self.FK_TransactionOwnerProfile_MasterMaritalStatus" FromRole="MasterMaritalStatus" ToRole="TransactionOwnerProfile" />
+        </EntityType>
+        <EntityType Name="MasterSkillLevel">
+          <Key>
+            <PropertyRef Name="SkillLevelId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillLevelId" Type="Int32" Nullable="false" />
+          <Property Name="SkillLevelTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillLevelScore" Type="Double" />
+          <NavigationProperty Name="TransactionOwnerSkills" Relationship="Self.FK_TransactionOwnerSkill_MasterSkillLevel" FromRole="MasterSkillLevel" ToRole="TransactionOwnerSkill" />
+        </EntityType>
+        <EntityType Name="MasterSkillType">
+          <Key>
+            <PropertyRef Name="SkillTypeId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SkillTypeTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillTypeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionOwnerSkills" Relationship="Self.FK_TransactionOwnerSkill_MasterSkillType" FromRole="MasterSkillType" ToRole="TransactionOwnerSkill" />
+        </EntityType>
+        <EntityType Name="MasterTemplate">
+          <Key>
+            <PropertyRef Name="TemplateId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TemplateTitile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionResumeDocuments" Relationship="Self.FK_TransactionResumeDocument_MasterTemplate" FromRole="MasterTemplate" ToRole="TransactionResumeDocument" />
+        </EntityType>
+        <EntityType Name="TransactionExperienceAchievement">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="AchievementId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AchievementId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AchievementTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AchievementDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AchievementSequence" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TransactionExperienceTimeline" Relationship="Self.FK_TransactionAchievement_TransactionExperienceTimeline" FromRole="TransactionExperienceAchievement" ToRole="TransactionExperienceTimeline" />
+          <NavigationProperty Name="TransactionExperienceAchievementItems" Relationship="Self.FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement" FromRole="TransactionExperienceAchievement" ToRole="TransactionExperienceAchievementItem" />
+        </EntityType>
+        <EntityType Name="TransactionExperienceAchievementItem">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="AchievementId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AchievementId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TagSkills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionExperienceAchievement" Relationship="Self.FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement" FromRole="TransactionExperienceAchievementItem" ToRole="TransactionExperienceAchievement" />
+        </EntityType>
+        <EntityType Name="TransactionExperienceTimeline">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PositionTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterExperienceType" Relationship="Self.FK_TransactionExperienceTimeline_MasterExperienceType" FromRole="TransactionExperienceTimeline" ToRole="MasterExperienceType" />
+          <NavigationProperty Name="TransactionExperienceAchievements" Relationship="Self.FK_TransactionAchievement_TransactionExperienceTimeline" FromRole="TransactionExperienceTimeline" ToRole="TransactionExperienceAchievement" />
+          <NavigationProperty Name="TransactionOwnerProfile" Relationship="Self.FK_TransactionExperienceTimeline_TransactionOwnerProfile" FromRole="TransactionExperienceTimeline" ToRole="TransactionOwnerProfile" />
+          <NavigationProperty Name="TransactionJobDescriptions" Relationship="Self.FK_TransactionJobDescription_TransactionExperienceTimeline" FromRole="TransactionExperienceTimeline" ToRole="TransactionJobDescription" />
+        </EntityType>
+        <EntityType Name="TransactionJobDescription">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemSequence" Type="Int32" />
+          <NavigationProperty Name="TransactionExperienceTimeline" Relationship="Self.FK_TransactionJobDescription_TransactionExperienceTimeline" FromRole="TransactionJobDescription" ToRole="TransactionExperienceTimeline" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerHobbyAndLiftStyle">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="HobbyId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HobbyId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionOwnerProfile" Relationship="Self.FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile" FromRole="TransactionOwnerHobbyAndLiftStyle" ToRole="TransactionOwnerProfile" />
+          <NavigationProperty Name="TransactionResumeHobbyAndLiftStyles" Relationship="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle" FromRole="TransactionOwnerHobbyAndLiftStyle" ToRole="TransactionResumeHobbyAndLiftStyle" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerOverView">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="OverViewItemId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OverViewItemId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionOwnerProfile" Relationship="Self.FK_TransactionOwnerOverView_TransactionOwnerProfile" FromRole="TransactionOwnerOverView" ToRole="TransactionOwnerProfile" />
+          <NavigationProperty Name="TransactionResumeOverViews" Relationship="Self.FK_TransactionResumeOverView_TransactionOwnerOverView" FromRole="TransactionOwnerOverView" ToRole="TransactionResumeOverView" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerProfile">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatusId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="HeightUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="WeightUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterGender" Relationship="Self.FK_TransactionOwnerProfile_MasterGender" FromRole="TransactionOwnerProfile" ToRole="MasterGender" />
+          <NavigationProperty Name="MasterMaritalStatu" Relationship="Self.FK_TransactionOwnerProfile_MasterMaritalStatus" FromRole="TransactionOwnerProfile" ToRole="MasterMaritalStatus" />
+          <NavigationProperty Name="TransactionExperienceTimelines" Relationship="Self.FK_TransactionExperienceTimeline_TransactionOwnerProfile" FromRole="TransactionOwnerProfile" ToRole="TransactionExperienceTimeline" />
+          <NavigationProperty Name="TransactionOwnerHobbyAndLiftStyles" Relationship="Self.FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile" FromRole="TransactionOwnerProfile" ToRole="TransactionOwnerHobbyAndLiftStyle" />
+          <NavigationProperty Name="TransactionOwnerOverViews" Relationship="Self.FK_TransactionOwnerOverView_TransactionOwnerProfile" FromRole="TransactionOwnerProfile" ToRole="TransactionOwnerOverView" />
+          <NavigationProperty Name="TransactionOwnerSkills" Relationship="Self.FK_TransactionOwnerSkill_TransactionOwnerProfile" FromRole="TransactionOwnerProfile" ToRole="TransactionOwnerSkill" />
+          <NavigationProperty Name="TransactionResumeDocuments" Relationship="Self.FK_TransactionResumeDocument_TransactionOwnerProfile" FromRole="TransactionOwnerProfile" ToRole="TransactionResumeDocument" />
+        </EntityType>
+        <EntityType Name="TransactionOwnerSkill">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SkillId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SkillTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillLevelId" Type="Int32" />
+          <Property Name="SkillType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillSinceYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterSkillLevel" Relationship="Self.FK_TransactionOwnerSkill_MasterSkillLevel" FromRole="TransactionOwnerSkill" ToRole="MasterSkillLevel" />
+          <NavigationProperty Name="MasterSkillType" Relationship="Self.FK_TransactionOwnerSkill_MasterSkillType" FromRole="TransactionOwnerSkill" ToRole="MasterSkillType" />
+          <NavigationProperty Name="TransactionOwnerProfile" Relationship="Self.FK_TransactionOwnerSkill_TransactionOwnerProfile" FromRole="TransactionOwnerSkill" ToRole="TransactionOwnerProfile" />
+        </EntityType>
+        <EntityType Name="TransactionResumeDocument">
+          <Key>
+            <PropertyRef Name="ResumeDocumentId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResumeDocumentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ApplyingFor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reference1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterTemplate" Relationship="Self.FK_TransactionResumeDocument_MasterTemplate" FromRole="TransactionResumeDocument" ToRole="MasterTemplate" />
+          <NavigationProperty Name="TransactionOwnerProfile" Relationship="Self.FK_TransactionResumeDocument_TransactionOwnerProfile" FromRole="TransactionResumeDocument" ToRole="TransactionOwnerProfile" />
+          <NavigationProperty Name="TransactionResumeHobbyAndLiftStyles" Relationship="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument" FromRole="TransactionResumeDocument" ToRole="TransactionResumeHobbyAndLiftStyle" />
+          <NavigationProperty Name="TransactionResumeOverViews" Relationship="Self.FK_TransactionResumeOverView_TransactionResumeDocument" FromRole="TransactionResumeDocument" ToRole="TransactionResumeOverView" />
+        </EntityType>
+        <EntityType Name="TransactionResumeHobbyAndLiftStyle">
+          <Key>
+            <PropertyRef Name="ResumeDocumentId" />
+            <PropertyRef Name="HobbyId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResumeDocumentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HobbyId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TransactionOwnerHobbyAndLiftStyle" Relationship="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle" FromRole="TransactionResumeHobbyAndLiftStyle" ToRole="TransactionOwnerHobbyAndLiftStyle" />
+          <NavigationProperty Name="TransactionResumeDocument" Relationship="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument" FromRole="TransactionResumeHobbyAndLiftStyle" ToRole="TransactionResumeDocument" />
+        </EntityType>
+        <EntityType Name="TransactionResumeOverView">
+          <Key>
+            <PropertyRef Name="ResumeDocumentId" />
+            <PropertyRef Name="OverViewItemId" />
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResumeDocumentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OverViewItemId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TransactionOwnerOverView" Relationship="Self.FK_TransactionResumeOverView_TransactionOwnerOverView" FromRole="TransactionResumeOverView" ToRole="TransactionOwnerOverView" />
+          <NavigationProperty Name="TransactionResumeDocument" Relationship="Self.FK_TransactionResumeOverView_TransactionResumeDocument" FromRole="TransactionResumeOverView" ToRole="TransactionResumeDocument" />
+        </EntityType>
+        <EntityType Name="vwExperienceAchievement">
+          <Key>
+            <PropertyRef Name="ExperienceId" />
+            <PropertyRef Name="AchievementId" />
+          </Key>
+          <Property Name="ExperienceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AchievementId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Project_No_" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Project_Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Row" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TagSkills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_TransactionExperienceTimeline_MasterExperienceType">
+          <End Role="MasterExperienceType" Type="Self.MasterExperienceType" Multiplicity="1" />
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterExperienceType">
+              <PropertyRef Name="ExperienceType" />
+            </Principal>
+            <Dependent Role="TransactionExperienceTimeline">
+              <PropertyRef Name="ExperienceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerProfile_MasterGender">
+          <End Role="MasterGender" Type="Self.MasterGender" Multiplicity="0..1" />
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterGender">
+              <PropertyRef Name="Gender" />
+            </Principal>
+            <Dependent Role="TransactionOwnerProfile">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerProfile_MasterMaritalStatus">
+          <End Role="MasterMaritalStatus" Type="Self.MasterMaritalStatu" Multiplicity="0..1" />
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterMaritalStatus">
+              <PropertyRef Name="MaritalStatusId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerProfile">
+              <PropertyRef Name="MaritalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerSkill_MasterSkillLevel">
+          <End Role="MasterSkillLevel" Type="Self.MasterSkillLevel" Multiplicity="0..1" />
+          <End Role="TransactionOwnerSkill" Type="Self.TransactionOwnerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterSkillLevel">
+              <PropertyRef Name="SkillLevelId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerSkill">
+              <PropertyRef Name="SkillLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerSkill_MasterSkillType">
+          <End Role="MasterSkillType" Type="Self.MasterSkillType" Multiplicity="0..1" />
+          <End Role="TransactionOwnerSkill" Type="Self.TransactionOwnerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterSkillType">
+              <PropertyRef Name="SkillTypeId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerSkill">
+              <PropertyRef Name="SkillType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeDocument_MasterTemplate">
+          <End Role="MasterTemplate" Type="Self.MasterTemplate" Multiplicity="1" />
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTemplate">
+              <PropertyRef Name="TemplateId" />
+            </Principal>
+            <Dependent Role="TransactionResumeDocument">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionAchievement_TransactionExperienceTimeline">
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="1" />
+          <End Role="TransactionExperienceAchievement" Type="Self.TransactionExperienceAchievement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionExperienceTimeline">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="TransactionExperienceAchievement">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement">
+          <End Role="TransactionExperienceAchievement" Type="Self.TransactionExperienceAchievement" Multiplicity="1" />
+          <End Role="TransactionExperienceAchievementItem" Type="Self.TransactionExperienceAchievementItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionExperienceAchievement">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+              <PropertyRef Name="AchievementId" />
+            </Principal>
+            <Dependent Role="TransactionExperienceAchievementItem">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+              <PropertyRef Name="AchievementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionExperienceTimeline_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionExperienceTimeline">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionJobDescription_TransactionExperienceTimeline">
+          <End Role="TransactionExperienceTimeline" Type="Self.TransactionExperienceTimeline" Multiplicity="1" />
+          <End Role="TransactionJobDescription" Type="Self.TransactionJobDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionExperienceTimeline">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="TransactionJobDescription">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionOwnerHobbyAndLiftStyle" Type="Self.TransactionOwnerHobbyAndLiftStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerHobbyAndLiftStyle">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle">
+          <End Role="TransactionOwnerHobbyAndLiftStyle" Type="Self.TransactionOwnerHobbyAndLiftStyle" Multiplicity="1" />
+          <End Role="TransactionResumeHobbyAndLiftStyle" Type="Self.TransactionResumeHobbyAndLiftStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerHobbyAndLiftStyle">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="HobbyId" />
+            </Principal>
+            <Dependent Role="TransactionResumeHobbyAndLiftStyle">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="HobbyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerOverView_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionOwnerOverView" Type="Self.TransactionOwnerOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerOverView">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeOverView_TransactionOwnerOverView">
+          <End Role="TransactionOwnerOverView" Type="Self.TransactionOwnerOverView" Multiplicity="1" />
+          <End Role="TransactionResumeOverView" Type="Self.TransactionResumeOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerOverView">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="OverViewItemId" />
+            </Principal>
+            <Dependent Role="TransactionResumeOverView">
+              <PropertyRef Name="OwnerId" />
+              <PropertyRef Name="OverViewItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionOwnerSkill_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionOwnerSkill" Type="Self.TransactionOwnerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionOwnerSkill">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeDocument_TransactionOwnerProfile">
+          <End Role="TransactionOwnerProfile" Type="Self.TransactionOwnerProfile" Multiplicity="1" />
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionOwnerProfile">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionResumeDocument">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument">
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="1" />
+          <End Role="TransactionResumeHobbyAndLiftStyle" Type="Self.TransactionResumeHobbyAndLiftStyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionResumeDocument">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionResumeHobbyAndLiftStyle">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionResumeOverView_TransactionResumeDocument">
+          <End Role="TransactionResumeDocument" Type="Self.TransactionResumeDocument" Multiplicity="1" />
+          <End Role="TransactionResumeOverView" Type="Self.TransactionResumeOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionResumeDocument">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="TransactionResumeOverView">
+              <PropertyRef Name="ResumeDocumentId" />
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ResumeEditorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MasterExperienceTypes" EntityType="Self.MasterExperienceType" />
+          <EntitySet Name="MasterGenders" EntityType="Self.MasterGender" />
+          <EntitySet Name="MasterMaritalStatus" EntityType="Self.MasterMaritalStatu" />
+          <EntitySet Name="MasterSkillLevels" EntityType="Self.MasterSkillLevel" />
+          <EntitySet Name="MasterSkillTypes" EntityType="Self.MasterSkillType" />
+          <EntitySet Name="MasterTemplates" EntityType="Self.MasterTemplate" />
+          <EntitySet Name="TransactionExperienceAchievements" EntityType="Self.TransactionExperienceAchievement" />
+          <EntitySet Name="TransactionExperienceAchievementItems" EntityType="Self.TransactionExperienceAchievementItem" />
+          <EntitySet Name="TransactionExperienceTimelines" EntityType="Self.TransactionExperienceTimeline" />
+          <EntitySet Name="TransactionJobDescriptions" EntityType="Self.TransactionJobDescription" />
+          <EntitySet Name="TransactionOwnerHobbyAndLiftStyles" EntityType="Self.TransactionOwnerHobbyAndLiftStyle" />
+          <EntitySet Name="TransactionOwnerOverViews" EntityType="Self.TransactionOwnerOverView" />
+          <EntitySet Name="TransactionOwnerProfiles" EntityType="Self.TransactionOwnerProfile" />
+          <EntitySet Name="TransactionOwnerSkills" EntityType="Self.TransactionOwnerSkill" />
+          <EntitySet Name="TransactionResumeDocuments" EntityType="Self.TransactionResumeDocument" />
+          <EntitySet Name="TransactionResumeHobbyAndLiftStyles" EntityType="Self.TransactionResumeHobbyAndLiftStyle" />
+          <EntitySet Name="TransactionResumeOverViews" EntityType="Self.TransactionResumeOverView" />
+          <EntitySet Name="vwExperienceAchievements" EntityType="Self.vwExperienceAchievement" />
+          <AssociationSet Name="FK_TransactionExperienceTimeline_MasterExperienceType" Association="Self.FK_TransactionExperienceTimeline_MasterExperienceType">
+            <End Role="MasterExperienceType" EntitySet="MasterExperienceTypes" />
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimelines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerProfile_MasterGender" Association="Self.FK_TransactionOwnerProfile_MasterGender">
+            <End Role="MasterGender" EntitySet="MasterGenders" />
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerProfile_MasterMaritalStatus" Association="Self.FK_TransactionOwnerProfile_MasterMaritalStatus">
+            <End Role="MasterMaritalStatus" EntitySet="MasterMaritalStatus" />
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerSkill_MasterSkillLevel" Association="Self.FK_TransactionOwnerSkill_MasterSkillLevel">
+            <End Role="MasterSkillLevel" EntitySet="MasterSkillLevels" />
+            <End Role="TransactionOwnerSkill" EntitySet="TransactionOwnerSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerSkill_MasterSkillType" Association="Self.FK_TransactionOwnerSkill_MasterSkillType">
+            <End Role="MasterSkillType" EntitySet="MasterSkillTypes" />
+            <End Role="TransactionOwnerSkill" EntitySet="TransactionOwnerSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeDocument_MasterTemplate" Association="Self.FK_TransactionResumeDocument_MasterTemplate">
+            <End Role="MasterTemplate" EntitySet="MasterTemplates" />
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionAchievement_TransactionExperienceTimeline" Association="Self.FK_TransactionAchievement_TransactionExperienceTimeline">
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimelines" />
+            <End Role="TransactionExperienceAchievement" EntitySet="TransactionExperienceAchievements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement" Association="Self.FK_TransactionExperienceAchievementItem_TransactionExperienceAchievement">
+            <End Role="TransactionExperienceAchievement" EntitySet="TransactionExperienceAchievements" />
+            <End Role="TransactionExperienceAchievementItem" EntitySet="TransactionExperienceAchievementItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionExperienceTimeline_TransactionOwnerProfile" Association="Self.FK_TransactionExperienceTimeline_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfiles" />
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimelines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionJobDescription_TransactionExperienceTimeline" Association="Self.FK_TransactionJobDescription_TransactionExperienceTimeline">
+            <End Role="TransactionExperienceTimeline" EntitySet="TransactionExperienceTimelines" />
+            <End Role="TransactionJobDescription" EntitySet="TransactionJobDescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile" Association="Self.FK_TransactionOwnerHobbyAndLiftStyle_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfiles" />
+            <End Role="TransactionOwnerHobbyAndLiftStyle" EntitySet="TransactionOwnerHobbyAndLiftStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle" Association="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionOwnerHobbyAndLiftStyle">
+            <End Role="TransactionOwnerHobbyAndLiftStyle" EntitySet="TransactionOwnerHobbyAndLiftStyles" />
+            <End Role="TransactionResumeHobbyAndLiftStyle" EntitySet="TransactionResumeHobbyAndLiftStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerOverView_TransactionOwnerProfile" Association="Self.FK_TransactionOwnerOverView_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfiles" />
+            <End Role="TransactionOwnerOverView" EntitySet="TransactionOwnerOverViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeOverView_TransactionOwnerOverView" Association="Self.FK_TransactionResumeOverView_TransactionOwnerOverView">
+            <End Role="TransactionOwnerOverView" EntitySet="TransactionOwnerOverViews" />
+            <End Role="TransactionResumeOverView" EntitySet="TransactionResumeOverViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionOwnerSkill_TransactionOwnerProfile" Association="Self.FK_TransactionOwnerSkill_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfiles" />
+            <End Role="TransactionOwnerSkill" EntitySet="TransactionOwnerSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeDocument_TransactionOwnerProfile" Association="Self.FK_TransactionResumeDocument_TransactionOwnerProfile">
+            <End Role="TransactionOwnerProfile" EntitySet="TransactionOwnerProfiles" />
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument" Association="Self.FK_TransactionResumeHobbyAndLiftStyle_TransactionResumeDocument">
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocuments" />
+            <End Role="TransactionResumeHobbyAndLiftStyle" EntitySet="TransactionResumeHobbyAndLiftStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionResumeOverView_TransactionResumeDocument" Association="Self.FK_TransactionResumeOverView_TransactionResumeDocument">
+            <End Role="TransactionResumeDocument" EntitySet="TransactionResumeDocuments" />
+            <End Role="TransactionResumeOverView" EntitySet="TransactionResumeOverViews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ResumeEditorModelStoreContainer" CdmEntityContainer="ResumeEditorEntities">
+          <EntitySetMapping Name="MasterExperienceTypes">
+            <EntityTypeMapping TypeName="ResumeEditorModel.MasterExperienceType">
+              <MappingFragment StoreEntitySet="MasterExperienceType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExperienceType" ColumnName="ExperienceType" />
+                <ScalarProperty Name="ExperienceTypeTitle" ColumnName="ExperienceTypeTitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterGenders">
+            <EntityTypeMapping TypeName="ResumeEditorModel.MasterGender">
+              <MappingFragment StoreEntitySet="MasterGender">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterMaritalStatus">
+            <EntityTypeMapping TypeName="ResumeEditorModel.MasterMaritalStatu">
+              <MappingFragment StoreEntitySet="MasterMaritalStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
+                <ScalarProperty Name="MaritalStatusTitle" ColumnName="MaritalStatusTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterSkillLevels">
+            <EntityTypeMapping TypeName="ResumeEditorModel.MasterSkillLevel">
+              <MappingFragment StoreEntitySet="MasterSkillLevel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SkillLevelId" ColumnName="SkillLevelId" />
+                <ScalarProperty Name="SkillLevelTitle" ColumnName="SkillLevelTitle" />
+                <ScalarProperty Name="SkillLevelScore" ColumnName="SkillLevelScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterSkillTypes">
+            <EntityTypeMapping TypeName="ResumeEditorModel.MasterSkillType">
+              <MappingFragment StoreEntitySet="MasterSkillType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SkillTypeId" ColumnName="SkillTypeId" />
+                <ScalarProperty Name="SkillTypeTitle" ColumnName="SkillTypeTitle" />
+                <ScalarProperty Name="SkillTypeDescription" ColumnName="SkillTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterTemplates">
+            <EntityTypeMapping TypeName="ResumeEditorModel.MasterTemplate">
+              <MappingFragment StoreEntitySet="MasterTemplate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="TemplateTitile" ColumnName="TemplateTitile" />
+                <ScalarProperty Name="TemplateDescription" ColumnName="TemplateDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionExperienceAchievements">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionExperienceAchievement">
+              <MappingFragment StoreEntitySet="TransactionExperienceAchievement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="AchievementId" ColumnName="AchievementId" />
+                <ScalarProperty Name="AchievementTitle" ColumnName="AchievementTitle" />
+                <ScalarProperty Name="AchievementDescription" ColumnName="AchievementDescription" />
+                <ScalarProperty Name="AchievementSequence" ColumnName="AchievementSequence" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionExperienceAchievementItems">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionExperienceAchievementItem">
+              <MappingFragment StoreEntitySet="TransactionExperienceAchievementItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="AchievementId" ColumnName="AchievementId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TagSkills" ColumnName="TagSkills" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionExperienceTimelines">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionExperienceTimeline">
+              <MappingFragment StoreEntitySet="TransactionExperienceTimeline">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="ExperienceType" ColumnName="ExperienceType" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyTitle" ColumnName="CompanyTitle" />
+                <ScalarProperty Name="PositionTitle" ColumnName="PositionTitle" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionJobDescriptions">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionJobDescription">
+              <MappingFragment StoreEntitySet="TransactionJobDescription">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemTitle" ColumnName="ItemTitle" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemSequence" ColumnName="ItemSequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionOwnerHobbyAndLiftStyles">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionOwnerHobbyAndLiftStyle">
+              <MappingFragment StoreEntitySet="TransactionOwnerHobbyAndLiftStyle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="HobbyId" ColumnName="HobbyId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionOwnerOverViews">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionOwnerOverView">
+              <MappingFragment StoreEntitySet="TransactionOwnerOverView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="OverViewItemId" ColumnName="OverViewItemId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionOwnerProfiles">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionOwnerProfile">
+              <MappingFragment StoreEntitySet="TransactionOwnerProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address4" ColumnName="Address4" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="HeightUnit" ColumnName="HeightUnit" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="WeightUnit" ColumnName="WeightUnit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionOwnerSkills">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionOwnerSkill">
+              <MappingFragment StoreEntitySet="TransactionOwnerSkill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="SkillTitle" ColumnName="SkillTitle" />
+                <ScalarProperty Name="SkillDescription" ColumnName="SkillDescription" />
+                <ScalarProperty Name="SkillLevelId" ColumnName="SkillLevelId" />
+                <ScalarProperty Name="SkillType" ColumnName="SkillType" />
+                <ScalarProperty Name="SkillSinceYear" ColumnName="SkillSinceYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionResumeDocuments">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionResumeDocument">
+              <MappingFragment StoreEntitySet="TransactionResumeDocument">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ResumeDocumentId" ColumnName="ResumeDocumentId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastUpdatedOn" ColumnName="LastUpdatedOn" />
+                <ScalarProperty Name="ApplyingFor" ColumnName="ApplyingFor" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="Reference1" ColumnName="Reference1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionResumeHobbyAndLiftStyles">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionResumeHobbyAndLiftStyle">
+              <MappingFragment StoreEntitySet="TransactionResumeHobbyAndLiftStyle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ResumeDocumentId" ColumnName="ResumeDocumentId" />
+                <ScalarProperty Name="HobbyId" ColumnName="HobbyId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionResumeOverViews">
+            <EntityTypeMapping TypeName="ResumeEditorModel.TransactionResumeOverView">
+              <MappingFragment StoreEntitySet="TransactionResumeOverView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ResumeDocumentId" ColumnName="ResumeDocumentId" />
+                <ScalarProperty Name="OverViewItemId" ColumnName="OverViewItemId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwExperienceAchievements">
+            <EntityTypeMapping TypeName="ResumeEditorModel.vwExperienceAchievement">
+              <MappingFragment StoreEntitySet="vwExperienceAchievement">
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="AchievementId" ColumnName="AchievementId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Project_No_" ColumnName="Project No." />
+                <ScalarProperty Name="Project_Title" ColumnName="Project Title" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TagSkills" ColumnName="TagSkills" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
