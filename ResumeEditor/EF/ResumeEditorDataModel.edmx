@@ -225,6 +225,7 @@ warning 6002: The table/view 'ResumeEditor.dbo.vwExperienceAchievement' does not
           <Key>
             <PropertyRef Name="ExperienceId" />
             <PropertyRef Name="AchievementId" />
+            <PropertyRef Name="Row" />
           </Key>
           <Property Name="ExperienceId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AchievementId" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -232,7 +233,7 @@ warning 6002: The table/view 'ResumeEditor.dbo.vwExperienceAchievement' does not
           <Property Name="Project No." Type="nvarchar" MaxLength="2" />
           <Property Name="Project Title" Type="nvarchar(max)" />
           <Property Name="ItemId" Type="int" />
-          <Property Name="Row" Type="bigint" />
+          <Property Name="Row" Type="bigint" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="TagSkills" Type="nvarchar(max)" />
         </EntityType>
@@ -831,6 +832,7 @@ warning 6002: The table/view 'ResumeEditor.dbo.vwExperienceAchievement' does not
           <Key>
             <PropertyRef Name="ExperienceId" />
             <PropertyRef Name="AchievementId" />
+            <PropertyRef Name="Row" />
           </Key>
           <Property Name="ExperienceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AchievementId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -838,7 +840,7 @@ warning 6002: The table/view 'ResumeEditor.dbo.vwExperienceAchievement' does not
           <Property Name="Project_No_" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Project_Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ItemId" Type="Int32" />
-          <Property Name="Row" Type="Int64" />
+          <Property Name="Row" Type="Int64" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TagSkills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>

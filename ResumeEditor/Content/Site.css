@@ -1,4 +1,8 @@
-﻿body {
+﻿html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }

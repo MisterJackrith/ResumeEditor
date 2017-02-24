@@ -20,7 +20,7 @@ namespace ResumeEditor.EF
         public string Project_No_ { get; set; }
         public string Project_Title { get; set; }
         public Nullable<int> ItemId { get; set; }
-        public Nullable<long> Row { get; set; }
+        public long Row { get; set; }
         public string Description { get; set; }
         public string TagSkills { get; set; }
     }

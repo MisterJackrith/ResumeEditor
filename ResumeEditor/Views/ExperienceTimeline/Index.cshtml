@@ -1,9 +1,124 @@
-﻿@model dynamic
+﻿@model System.Data.Entity.DbSet<ResumeEditor.EF.vwExperienceAchievement>
 
 @{
-  ViewBag.Title = "title";
-  Layout = "_Layout";
+  ViewBag.Title = "Experience Timeline";
 }
 
-<h2>title</h2>
-  
+@*<style type="text/css">
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    font: 12pt "Tahoma";
+  }
+
+  * {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 10mm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px #000000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .subpage {
+    padding: 1cm;
+    border: 5px red solid;
+    height: 257mm;
+    outline: 2cm #FFEAEA solid;
+  }
+
+  @@page {
+    size: A4;
+    margin: 0;
+  }
+
+  @@media print {
+    html, body {
+      width: 210mm;
+      height: 297mm;
+    }
+
+    .page {
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+    }
+  }
+</style>*@
+<style type="text/css">
+  .tag-skill { font-weight: bold }
+</style>
+
+<h2>@ViewBag.Title</h2>
+<article>
+  @{
+    var groupTitle = Model.Where(s => s.ExperienceId == "WORK2010").GroupBy(s => new {s.Project_Title, s.AchievementId, s.Year, s.Project_No_});
+  }
+  <div class="row">
+    <div class="col-md-12">
+      <ol>
+        @foreach (var achievements in groupTitle.OrderBy(s => s.Key.AchievementId))
+        {
+          <li style="font-size: 14pt;margin-bottom: 10pt; color:#428BCA"><span style="font-size: 14pt; color:#428BCA">@achievements.Key.Project_Title<span>, [Y</span>@achievements.Key.Year<span>]</span></span>
+            
+            <ul style="font-size: small; color: black">
+              @foreach (var item in Model.Where(s => s.AchievementId == achievements.Key.AchievementId))
+              {
+                <li>@item.Description</li>
+              }
+              <li>
+                <b>Tags:</b>
+                @{
+                  var tempString = "";
+                  foreach (var skill in Model.Where(s => s.AchievementId == achievements.Key.AchievementId).GroupBy(k => k.TagSkills))
+                  {
+                    tempString = tempString + skill.Key + " ";
+                  }
+
+                  var listSkill = tempString.Split(' ').Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
+                  var i = 1;
+                }
+                @foreach (var skill in listSkill)
+                {
+                  var skillWithoutSpace = skill.Replace(" ", string.Empty);
+                  var styleHighlight = "";
+                  if (skillWithoutSpace.Contains("BI"))
+                  {
+                    styleHighlight = "color: red;text-decoration: underline;";
+                  }
+                  if (i == listSkill.Count)
+                  {
+                    <span class="tag-skill" style="@styleHighlight">@skillWithoutSpace</span>
+                  }
+                  else
+                  {
+                    <span class="tag-skill" style="@styleHighlight">@skillWithoutSpace </span>
+                  }
+
+                  i++;
+                }
+
+              </li>
+            </ul>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</article>

@@ -176,6 +176,8 @@
     <Compile Include="Controllers\ExperienceTimelineController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TransactionExperienceAchievementItemsController.cs" />
+    <Compile Include="Controllers\TransactionExperienceAchievementsController.cs" />
     <Compile Include="EF\MasterExperienceType.cs">
       <DependentUpon>ResumeEditorDataModel.tt</DependentUpon>
     </Compile>
@@ -343,6 +345,22 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\ExperienceTimeline\Index.cshtml" />
+    <Content Include="Views\ExperienceTimeline\ExperienceAchievements.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievementItems\Create.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievementItems\Delete.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievementItems\Details.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievementItems\Edit.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievementItems\Index.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievements\Create.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievements\Delete.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievements\Details.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievements\Edit.cshtml" />
+    <Content Include="Views\TransactionExperienceAchievements\Index.cshtml" />
+    <Content Include="Views\ExperienceTimeline\Timeline.cshtml" />
+    <Content Include="Views\ExperienceTimeline\Timeline21WithImagesAndResponsive.cshtml" />
+    <Content Include="Views\ExperienceTimeline\TwoColumnTimelineNotResponsive.cshtml" />
+    <Content Include="Views\ExperienceTimeline\TimelineResponsive.cshtml" />
+    <Content Include="Views\ExperienceTimeline\BootstrapMegaMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

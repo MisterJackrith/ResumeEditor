@@ -1,0 +1,47 @@
+﻿@model System.Data.Entity.DbSet<ResumeEditor.EF.vwExperienceAchievement>
+
+@{
+  ViewBag.Title = "Experience Timeline";
+}
+
+<h2>@ViewBag.Title</h2>
+<article>
+  @{
+    var number = 1;
+    var groupTitle = Model.Where(s => s.ExperienceId == "WORK2010").GroupBy(s => new {s.Project_Title, s.AchievementId, s.Year, s.Project_No_});
+  }
+
+  @foreach (var achievements in groupTitle.OrderBy(s => s.Key.AchievementId))
+  {
+    <div class="row">
+      <div class="col-md-12">
+        <label>
+          @number<span>.</span>
+        </label>
+        <label>
+          @achievements.Key.Project_Title <span>, (Y</span>@achievements.Key.Year<span>)</span>
+        </label>
+        <br/>
+        <label>
+          <span>&nbsp;&nbsp;&nbsp;</span>[Skill Tags]:
+          @{
+            var tempString = "";
+            foreach (var skill in Model.Where(s => s.AchievementId == achievements.Key.AchievementId).GroupBy(k => k.TagSkills))
+            {
+              tempString = tempString + skill.Key + " ";
+            }
+
+            var listSkill = tempString.Split(' ').Distinct().ToList();
+          }
+          @foreach (var skill in listSkill)
+          {
+            @skill<span>&nbsp;</span>
+          }
+        </label>
+
+      </div>
+    </div>
+    <br/>
+    number++;
+  }
+</article>
